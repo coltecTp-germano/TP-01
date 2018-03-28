@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="coltectp.github.io.movieme.CadastroActivity"
+    android:layout_column="2">
+
+    <TableRow
+        android:id="@+id/row1"
+        android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/lb_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:padding="20dp"
+        android:text="Nome:"/>
+
+        <EditText
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:textColorHighlight="@android:color/holo_red_dark"
+            android:layout_toRightOf="@+id/lb_nome" />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/row2"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/lb_genero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_dark"
+            android:padding="20dp"
+            android:text="Gênero:"/>
+
+        <Spinner
+            android:id="@+id/menu_generos"
+            android:layout_marginTop="20dp"
+            android:spinnerMode="dropdown"/>
+
+    </TableRow>
+
+
+    <TableRow></TableRow>
+
+
+</TableLayout>
