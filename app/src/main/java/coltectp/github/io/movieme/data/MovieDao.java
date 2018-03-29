@@ -7,6 +7,9 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 import android.database.Cursor;
 
+
+import static coltectp.github.io.movieme.provider.MovieContract.MovieEntry.*;
+
 /**
  * Created by Germano Barcelos on 29/03/2018.
  */
@@ -14,20 +17,20 @@ import android.database.Cursor;
 @Dao
 public interface MovieDao {
     @Insert
-    void insert(Movie movie);
+    long insert(Movie movie);
 
     @Update
     int update(Movie movie);
 
-    @Query("DELETE FROM " + Movie.TABLE_NAME + " WHERE " +  Movie.COLUMN_ID + " = :id")
+    @Query("DELETE FROM " + TABLE_NAME + " WHERE " +  COLUMN_ID + " = :id")
     int deleteById(long id);
 
-    @Query("SELECT COUNT(*) FROM " + Movie.TABLE_NAME)
+    @Query("SELECT COUNT(*) FROM " + TABLE_NAME)
     int count();
 
-    @Query("SELECT * FROM " + Movie.TABLE_NAME)
+    @Query("SELECT * FROM " + TABLE_NAME)
     Cursor selectAll();
 
-    @Query("SELECT * FROM " + Movie.TABLE_NAME + " WHERE " + Movie.COLUMN_ID + " = :id")
+    @Query("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = :id")
     Cursor selectById(long id);
 }

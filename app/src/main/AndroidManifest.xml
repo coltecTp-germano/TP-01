@@ -16,7 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastroActivity" android:label="Add filme"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Add filme"
+            android:parentActivityName=".MainActivity" >
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <provider
+            android:authorities="coltectp.github.io.movieme"
+            android:name=".provider.MovieProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

@@ -4,22 +4,17 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import android.provider.BaseColumns;
 import android.content.ContentValues;
+
+import static coltectp.github.io.movieme.provider.MovieContract.MovieEntry.*;
 
 /**
  * Created by Germano Barcelos on 28/03/2018.
  */
 
-@Entity(tableName = Movie.TABLE_NAME)
+@Entity(tableName = TABLE_NAME)
 public class Movie {
-    public static final String TABLE_NAME = "movies";
-    public static final String COLUMN_ID = BaseColumns._ID;
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_GENRE = "genre";
-    public static final String COLUMN_DIRECTOR = "director";
-    public static final String COLUMN_AGE_GROUP = "age_group";
-    public static final String COLUMN_RELEASE_DATE = "release_date";
+
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true, name = COLUMN_ID)
