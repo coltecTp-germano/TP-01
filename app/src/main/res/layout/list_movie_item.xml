@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+        <TextView
+            android:id="@+id/lm_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/roboto_condensed_bold"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            tools:hint="Interstellar" />
+
+        <ImageView
+            android:id="@+id/lm_icon_iv"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignBottom="@id/lm_name_tv"
+            android:layout_toEndOf="@id/lm_name_tv"
+            android:textColor="@android:color/black"
+            tools:src="@drawable/icon_free" />
+
+        <TextView
+            android:id="@+id/lm_release_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/lm_name_tv"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:hint="2018" />
+
+        <TextView
+            android:id="@+id/lm_genre_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lm_name_tv"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:hint="Ficction"/>
+
 
 </RelativeLayout>

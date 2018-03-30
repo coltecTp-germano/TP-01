@@ -30,7 +30,7 @@ public class Movie {
     private String mDirector;
 
     @ColumnInfo(name = COLUMN_AGE_GROUP)
-    private String mAgeGroup;
+    private int mAgeGroup;
 
     @ColumnInfo(name = COLUMN_RELEASE_DATE)
     private int mReleaseDate;
@@ -57,7 +57,7 @@ public class Movie {
         }
 
         if (values.containsKey(COLUMN_AGE_GROUP)) {
-            movie.setAgeGroup(values.getAsString(COLUMN_AGE_GROUP));
+            movie.setAgeGroup(values.getAsInteger(COLUMN_AGE_GROUP));
         }
 
         if (values.containsKey(COLUMN_RELEASE_DATE)) {
@@ -99,11 +99,11 @@ public class Movie {
         this.mDirector = mDirector;
     }
 
-    public String getAgeGroup() {
+    public int getAgeGroup() {
         return mAgeGroup;
     }
 
-    public void setAgeGroup(String mAgeGroup) {
+    public void setAgeGroup(int mAgeGroup) {
         this.mAgeGroup = mAgeGroup;
     }
 
@@ -114,4 +114,5 @@ public class Movie {
     public void setReleaseDate(int mReleaseDate) {
         this.mReleaseDate = mReleaseDate;
     }
+
 }

@@ -46,5 +46,22 @@ public class MovieContract {
                     || genre == GENRE_FICCTION;
         }
 
+        public static final int AGE_GROUP_L = 5;
+        public static final int AGE_GROUP_10 = 6;
+        public static final int AGE_GROUP_12 = 7;
+        public static final int AGE_GROUP_14 = 8;
+        public static final int AGE_GROUP_16 = 9;
+        public static final int AGE_GROUP_18 = 10;
+
+        public static boolean isValidAgeGroup (int ageGroup) {
+            return ageGroup == AGE_GROUP_L
+                    || ageGroup == AGE_GROUP_10
+                    || ageGroup == AGE_GROUP_12
+                    || ageGroup == AGE_GROUP_14
+                    || ageGroup == AGE_GROUP_16
+                    || ageGroup == AGE_GROUP_18;
+        }
+
+
     }
 }

@@ -29,6 +29,9 @@
             android:authorities="coltectp.github.io.movieme"
             android:name=".provider.MovieProvider"
             android:exported="false"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
