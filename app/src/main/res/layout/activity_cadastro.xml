@@ -7,6 +7,9 @@
     tools:context="coltectp.github.io.movieme.RegisterActivity"
     android:layout_column="2">
 
+    <!--Todo(2) Colocar sppiner para ageGroup-->
+    <!--TODO(3) Externalizar todos os styles em styles.xml-->
+
     <TableRow
         android:id="@+id/row1"
         android:layout_marginTop="20dp">

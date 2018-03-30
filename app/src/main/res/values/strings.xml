@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Movie Me</string>
+
+    <!--Genres-->
+    <string name="genre_aventure">Aventure</string>
+    <string name="genre_romance">Romance</string>
+    <string name="genre_terror">Terror</string>
+    <string name="genre_suspense">Suspense</string>
+    <string name="genre_ficction">Ficction</string>
+
+    <!--TODO(2) Colocar todas strings utilizadas aqui-->
 </resources>

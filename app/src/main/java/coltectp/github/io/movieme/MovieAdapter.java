@@ -27,34 +27,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             holder.mNameMovie.setText(mCursor.getString
                     (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_NAME)));
 
-            holder.mGenre.setText(String.valueOf(mCursor.getInt
-                    (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_GENRE))));
-
             holder.mReleaseDate.setText(String.valueOf(mCursor.getInt
                     (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_RELEASE_DATE))));
 
-            switch (mCursor.getInt(mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_AGE_GROUP))) {
-                case MovieEntry.AGE_GROUP_L:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_free);
-                    break;
-                case MovieEntry.AGE_GROUP_10:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_ten);
-                    break;
-                case MovieEntry.AGE_GROUP_12:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_twelve);
-                    break;
-                case MovieEntry.AGE_GROUP_14:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_fourteen);
-                    break;
-                case MovieEntry.AGE_GROUP_16:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_sixteen);
-                    break;
-                case MovieEntry.AGE_GROUP_18:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_eighteen);
-                    break;
-                default:
-                    holder.mAgeGroup.setImageResource(R.drawable.icon_free);
-            }
+            setGenreTextView(holder, mCursor.getInt
+                    (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_GENRE)));
+
+            setAgeGroupImageResource(holder,
+                    mCursor.getInt(mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_AGE_GROUP)));
+
         }
     }
 
@@ -66,6 +47,53 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return mCursor == null ? 0 : mCursor.getCount();
+    }
+
+    private void setAgeGroupImageResource (ViewHolder holder, int ageGroup) {
+        switch (ageGroup) {
+            case MovieEntry.AGE_GROUP_L:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_free);
+                break;
+            case MovieEntry.AGE_GROUP_10:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_ten);
+                break;
+            case MovieEntry.AGE_GROUP_12:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_twelve);
+                break;
+            case MovieEntry.AGE_GROUP_14:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_fourteen);
+                break;
+            case MovieEntry.AGE_GROUP_16:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_sixteen);
+                break;
+            case MovieEntry.AGE_GROUP_18:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_eighteen);
+                break;
+            default:
+                holder.mAgeGroup.setImageResource(R.drawable.icon_free);
+        }
+    }
+
+    private void setGenreTextView (ViewHolder holder, int genre) {
+        switch (genre) {
+            case MovieEntry.GENRE_AVENTURE:
+                holder.mGenre.setText(R.string.genre_aventure);
+                break;
+            case MovieEntry.GENRE_ROMANCE:
+                holder.mGenre.setText(R.string.genre_romance);
+                break;
+            case MovieEntry.GENRE_SUSPENSE:
+                holder.mGenre.setText(R.string.genre_suspense);
+                break;
+            case MovieEntry.GENRE_TERROR:
+                holder.mGenre.setText(R.string.genre_terror);
+                break;
+            case MovieEntry.GENRE_FICCTION:
+                holder.mGenre.setText(R.string.genre_ficction);
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
