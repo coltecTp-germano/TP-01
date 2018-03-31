@@ -14,6 +14,7 @@ import static coltectp.github.io.movieme.provider.MovieContract.*;
  */
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+
     private Cursor mCursor;
 
     void setMovie(Cursor cursor) {
