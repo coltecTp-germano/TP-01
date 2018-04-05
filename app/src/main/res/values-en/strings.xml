@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movie Me</string>
+    <string name="genre_aventure">Aventure</string>
+    <string name="genre_romance">Romance</string>
+    <string name="snackbar_message2">UNDO</string>
+    <string name="snackbar_message1">removed from your Movie list!</string>
+    <string name="delete_swipe">DELETE</string>
+    <string name="empty_view_subtitle_text">Get started by adding a movie.</string>
+    <string name="empty_view_title_text">There\'s no movie here!</string>
+    <string name="action_delete_all_entries">Delete All Movies</string>
+    <string name="action_insert_dummy_data">Insert Dummy data</string>
+    <string name="genre_ficction">Ficction</string>
+    <string name="genre_suspense">Suspense</string>
+    <string name="genre_terror">Terror</string>
+</resources>

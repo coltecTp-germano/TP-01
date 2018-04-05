@@ -1,32 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <RelativeLayout
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_row_background">
+
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:tint="@color/icons"
+            android:src="@drawable/ic_delete_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@id/delete_icon"
+            android:text="@string/delete_swipe"
+            android:textColor="@color/secondary_text"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/view_foreground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/lm_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/lm_icon_iv"
             android:fontFamily="@font/roboto_condensed_bold"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"
+            android:textColor="@color/primary_text"
+            android:textSize="19sp"
             android:textStyle="bold"
             tools:hint="Interstellar" />
+
+        <TextView
+            android:id="@+id/lm_director_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/lm_name_tv"
+            android:layout_alignBottom="@+id/lm_name_tv"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/lm_name_tv"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/secondary_text"
+            android:textSize="16sp"
+            tools:hint="Eu" />
 
         <ImageView
             android:id="@+id/lm_icon_iv"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_alignBottom="@id/lm_name_tv"
-            android:layout_toEndOf="@id/lm_name_tv"
-            android:textColor="@android:color/black"
+            android:layout_above="@+id/lm_genre_tv"
+            android:layout_alignStart="@+id/lm_genre_tv"
+            android:layout_alignTop="@+id/lm_name_tv"
             tools:src="@drawable/icon_free" />
 
         <TextView
@@ -35,10 +83,10 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/lm_name_tv"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto_light"
-            android:textColor="@android:color/black"
+            android:textColor="@color/secondary_text"
             android:textSize="16sp"
-            android:textStyle="bold"
             tools:hint="2018" />
 
         <TextView
@@ -49,9 +97,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto_light"
-            android:textColor="@android:color/black"
+            android:textColor="@color/secondary_text"
             android:textSize="16sp"
-            tools:hint="Ficction"/>
+            tools:hint="Ficction" />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</FrameLayout>

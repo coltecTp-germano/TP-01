@@ -38,6 +38,14 @@ public class Movie {
     public Movie() {
     }
 
+    public Movie(String mName, int mGenre, String mDirector, int mAgeGroup, int mReleaseDate) {
+        this.mName = mName;
+        this.mGenre = mGenre;
+        this.mDirector = mDirector;
+        this.mAgeGroup = mAgeGroup;
+        this.mReleaseDate = mReleaseDate;
+    }
+
     public static Movie fromContentValues(ContentValues values) {
         final Movie movie = new Movie();
         if (values.containsKey(COLUMN_ID)) {
@@ -114,5 +122,4 @@ public class Movie {
     public void setReleaseDate(int mReleaseDate) {
         this.mReleaseDate = mReleaseDate;
     }
-
 }

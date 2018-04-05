@@ -20,6 +20,7 @@ public abstract class Database extends RoomDatabase {
         if (sInstance == null) {
             sInstance = Room
                     .databaseBuilder(context.getApplicationContext(), Database.class, "MovieMe")
+                    .allowMainThreadQueries()
                     .build();
         }
         return sInstance;

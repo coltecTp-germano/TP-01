@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movie Me</string>
+    <string name="genre_aventure">Aventura</string>
+    <string name="genre_romance">Romance</string>
+    <string name="genre_terror">Terror</string>
+    <string name="genre_suspense">Suspense</string>
+    <string name="genre_ficction">Ficção</string>
+    <string name="action_insert_dummy_data">Inserir Dados Falsos</string>
+    <string name="action_delete_all_entries">Deletar Todos os Filmes</string>
+    <string name="empty_view_title_text">Não existe nenhum filme aqui!</string>
+    <string name="empty_view_subtitle_text">Mece adicionando um novo filme</string>
+    <string name="delete_swipe">DELETAR</string>
+    <string name="snackbar_message1">removido da sua lista de filmes</string>
+    <string name="snackbar_message2">DESFAZER</string>
+</resources>

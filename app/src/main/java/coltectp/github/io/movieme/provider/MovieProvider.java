@@ -8,6 +8,7 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import java.util.ArrayList;
 
 import android.content.UriMatcher;
 
@@ -31,7 +32,7 @@ public class MovieProvider extends ContentProvider {
 
     static {
         sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_MOVIE, MOVIE);
-        sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_MOVIE, MOVIE_ID);
+        sUriMatcher.addURI(CONTENT_AUTHORITY, PATH_MOVIE + "/#", MOVIE_ID);
     }
 
     @Override
@@ -118,8 +119,10 @@ public class MovieProvider extends ContentProvider {
                 if (context == null) {
                     return 0;
                 }
-                return Database.getInstance(context).movieDao()
+                final int count =  Database.getInstance(context).movieDao()
                         .deleteById(ContentUris.parseId(uri));
+                context.getContentResolver().notifyChange(uri, null);
+                return count;
             default:
                 throw new IllegalArgumentException("Unknown URI " + uri + " with match " + code);
         }

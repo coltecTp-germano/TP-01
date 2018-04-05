@@ -1,53 +1,70 @@
 package coltectp.github.io.movieme;
 
+import android.arch.persistence.room.Relation;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.View;
 import android.database.Cursor;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.content.Context;
+import java.util.ArrayList;
+import android.content.ContentValues;
+import android.content.ContentUris;
+import android.net.Uri;
+import android.widget.RelativeLayout;
 
+import butterknife.BindView;
+import coltectp.github.io.movieme.data.Movie;
+import coltectp.github.io.movieme.provider.MovieContract;
+import coltectp.github.io.movieme.provider.MovieProvider;
+
+import static butterknife.ButterKnife.bind;
 import static coltectp.github.io.movieme.provider.MovieContract.*;
 
 /**
  * Created by Germano Barcelos on 29/03/2018.
  */
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    private Cursor mCursor;
+    private Context mContext;
+    private ArrayList<Movie> mMovies;
 
-    void setMovie(Cursor cursor) {
-        mCursor = cursor;
+    public MovieAdapter(Context context, ArrayList<Movie> movies) {
+        this.mContext = context;
+        this.mMovies = movies;
+    }
+
+    public void swapList(ArrayList<Movie> movies) {
+        mMovies = movies;
         notifyDataSetChanged();
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (mCursor.moveToPosition(position)) {
-            holder.mNameMovie.setText(mCursor.getString
-                    (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_NAME)));
+        holder.mNameMovie.setText(mMovies.get(position).getName());
 
-            holder.mReleaseDate.setText(String.valueOf(mCursor.getInt
-                    (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_RELEASE_DATE))));
+        holder.mDirector.setText(mMovies.get(position).getDirector());
 
-            setGenreTextView(holder, mCursor.getInt
-                    (mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_GENRE)));
+        holder.mReleaseDate.setText(String.valueOf(mMovies.get(position).getReleaseDate()));
 
-            setAgeGroupImageResource(holder,
-                    mCursor.getInt(mCursor.getColumnIndexOrThrow(MovieEntry.COLUMN_AGE_GROUP)));
+        setGenreTextView(holder, mMovies.get(position).getGenre());
 
-        }
+        setAgeGroupImageResource(holder, mMovies.get(position).getAgeGroup());
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(parent);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_movie_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public int getItemCount() {
-        return mCursor == null ? 0 : mCursor.getCount();
+        return mMovies == null ? 0 : mMovies.size();
     }
 
     private void setAgeGroupImageResource (ViewHolder holder, int ageGroup) {
@@ -97,19 +114,45 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mNameMovie;
-        TextView mReleaseDate;
-        TextView mGenre;
-        ImageView mAgeGroup;
-        ViewHolder (ViewGroup parent) {
-            super(LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.list_movie_item, parent, false));
+    public void removeItem(int position) {
+        Movie movie = mMovies.get(position);
+        long id = movie.getId();
 
-            mNameMovie = itemView.findViewById(R.id.lm_name_tv);
-            mReleaseDate = itemView.findViewById(R.id.lm_release_date_tv);
-            mGenre = itemView.findViewById(R.id.lm_genre_tv);
-            mAgeGroup = itemView.findViewById(R.id.lm_icon_iv);
+        Uri currentMovie = ContentUris.withAppendedId(MovieEntry.CONTENT_URI, id);
+        int count = mContext.getContentResolver().delete(currentMovie, MovieEntry.COLUMN_ID + "=" + id, null);
+
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(Movie movie, int position) {
+
+        ContentValues values = new ContentValues();
+
+        values.put(MovieContract.MovieEntry.COLUMN_ID, movie.getId());
+        values.put(MovieContract.MovieEntry.COLUMN_NAME, movie.getName());
+        values.put(MovieContract.MovieEntry.COLUMN_DIRECTOR, movie.getDirector());
+        values.put(MovieContract.MovieEntry.COLUMN_AGE_GROUP, movie.getAgeGroup());
+        values.put(MovieContract.MovieEntry.COLUMN_RELEASE_DATE, movie.getReleaseDate());
+        values.put(MovieContract.MovieEntry.COLUMN_GENRE, movie.getGenre());
+        values.put(MovieContract.MovieEntry.COLUMN_DIRECTOR, movie.getDirector());
+
+        Uri newUri = mContext.getContentResolver().insert(MovieEntry.CONTENT_URI, values);
+        mMovies.add(position, movie);
+        notifyItemInserted(position);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+       @BindView(R.id.lm_name_tv) TextView mNameMovie;
+       @BindView(R.id.lm_release_date_tv) TextView mReleaseDate;
+       @BindView(R.id.lm_genre_tv) TextView mGenre;
+       @BindView(R.id.lm_director_tv) TextView mDirector;
+       @BindView(R.id.lm_icon_iv) ImageView mAgeGroup;
+       @BindView(R.id.view_background) RelativeLayout viewBackground;
+       @BindView(R.id.view_foreground) RelativeLayout viewForeground;
+
+        ViewHolder (View view) {
+            super(view);
+            bind(this, view);
         }
     }
 }
