@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Genres-->
+    <string name="genre_prompt">Choose a genre</string>
+    <string-array name="genres">
+        <item>Aventure</item>
+        <item>Romance</item>
+        <item>Terror</item>
+        <item>Suspense</item>
+        <item>Ficction</item>
+    </string-array>
+
+    <!-- Age range -->
+    <string name="age_prompt">Choose a age range</string>
+    <string-array name="ages">
+        <item>L</item>
+        <item>10</item>
+        <item>12</item>
+        <item>14</item>
+        <item>16</item>
+        <item>18</item>
+    </string-array>
     <string name="app_name">Movie Me</string>
     <string name="genre_aventure">Aventure</string>
     <string name="genre_romance">Romance</string>

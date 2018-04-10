@@ -66,9 +66,10 @@
             android:textColor="@android:color/holo_red_dark" />
 
         <Spinner
-            android:id="@+id/menu_generos"
+            android:id="@+id/generos"
             android:layout_height="22dp"
             android:layout_marginTop="20dp"
+            android:longClickable="false"
             android:padding="20dp"
             android:spinnerMode="dropdown" />
 
@@ -93,7 +94,7 @@
             android:layout_height="22dp"
             android:layout_marginTop="20dp"
             android:padding="20dp"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"/>
 
     </TableRow>
 
@@ -109,10 +110,15 @@
             android:text="Ano de lançamento"
             android:textColor="@android:color/holo_red_dark" />
 
+        <EditText
+            android:id="@+id/ano-lancamento"
+            android:inputType="date"/>
+
     </TableRow>
 
     <Button
         android:id="@+id/add_btn"
+        android:width="50dp"
         android:layout_marginTop="50dp"
         android:background="@android:color/holo_red_dark"
         android:text="Adicionar"
