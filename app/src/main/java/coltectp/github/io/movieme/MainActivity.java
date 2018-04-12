@@ -223,20 +223,20 @@ public class MainActivity extends AppCompatActivity
     private void deleteAllPets() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
 
-        alertBuilder.setTitle("Aviso!");
-        alertBuilder.setMessage("Irá deletar rodos os filmes já cadastrados.");
+        alertBuilder.setTitle(R.string.warning_dialog);
+        alertBuilder.setMessage(R.string.delete_all_movies_dialog);
 
-        alertBuilder.setPositiveButton("Estou ciente!", new DialogInterface.OnClickListener() {
+        alertBuilder.setPositiveButton(R.string.responsibilities_dialog, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI, null,  null);
             }
         });
 
-        alertBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        alertBuilder.setNegativeButton(R.string.cancel_dialog, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getBaseContext(), "Ufa!", Toast.LENGTH_LONG).show();
+                dialogInterface.dismiss();
             }
         });
 

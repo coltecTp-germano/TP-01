@@ -30,4 +30,8 @@
     <string name="error_insert">Nenhum filme inserido!</string>
     <string name="success_insert">Filme inserido</string>
     <string name="label_register_activity">Adicionar Filme</string>
+    <string name="warning_dialog">Aviso</string>
+    <string name="responsibilities_dialog">Estou Ciente</string>
+    <string name="cancel_dialog">Cancelar</string>
+    <string name="delete_all_movies_dialog">Irá deletar todos os filmes já cadastrados.</string>
 </resources>
