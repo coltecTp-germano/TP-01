@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="coltectp.github.io.movieme.RegisterActivity"
-    android:layout_column="2">
+    android:layout_column="2"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context="coltectp.github.io.movieme.RegisterActivity">
 
     <!--Todo(2) Colocar sppiner para ageGroup-->
     <!--TODO(3) Externalizar todos os styles em styles.xml-->
-
 
     <!-- Primeira linha - Nome do filme -->
     <TableRow
@@ -18,16 +19,15 @@
 
         <TextView
             android:id="@+id/lb_nome"
+            style="@style/CategoryStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="Nome:"
-            android:textColor="@android:color/holo_red_dark" />
+            android:text="@string/name_edit" />
 
         <EditText
+            android:id="@+id/nome"
             android:layout_width="128dp"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@android:color/holo_red_dark" />
+            android:layout_height="wrap_content" />
 
     </TableRow>
 
@@ -38,16 +38,15 @@
 
         <TextView
             android:id="@+id/lb_diretor"
+            style="@style/CategoryStyle"
             android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="Diretor:"
-            android:textColor="@android:color/holo_red_dark" />
+            android:text="@string/director_edit" />
 
         <EditText
+            android:id="@+id/diretor"
             android:layout_width="201dp"
-            android:layout_height="wrap_content"
-            android:textColorHighlight="@android:color/holo_red_dark" />
+            android:layout_height="wrap_content" />
 
     </TableRow>
 
@@ -59,11 +58,10 @@
 
         <TextView
             android:id="@+id/lb_genero"
+            style="@style/CategoryStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="Gênero:"
-            android:textColor="@android:color/holo_red_dark" />
+            android:text="@string/genre_edit" />
 
         <Spinner
             android:id="@+id/generos"
@@ -83,18 +81,17 @@
 
         <TextView
             android:id="@+id/lb_faixa_etaria"
+            style="@style/CategoryStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="Faixa Etária:"
-            android:textColor="@android:color/holo_red_dark"/>
+            android:text="@string/age_group_edit" />
 
         <Spinner
             android:id="@+id/idades"
+            android:layout_width="fill_parent"
             android:layout_height="22dp"
             android:layout_marginTop="20dp"
-            android:padding="20dp"
-            android:spinnerMode="dropdown"/>
+            android:padding="20dp" />
 
     </TableRow>
 
@@ -104,24 +101,15 @@
 
         <TextView
             android:id="@+id/lb_lacamento"
+            style="@style/CategoryStyle"
             android:layout_width="91dp"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:text="Ano de lançamento"
-            android:textColor="@android:color/holo_red_dark" />
+            android:text="@string/release_year_edit" />
 
         <EditText
-            android:id="@+id/ano-lancamento"
-            android:inputType="date"/>
+            android:id="@+id/ano_lancamento"
+            android:inputType="date" />
 
     </TableRow>
-
-    <Button
-        android:id="@+id/add_btn"
-        android:width="50dp"
-        android:layout_marginTop="50dp"
-        android:background="@android:color/holo_red_dark"
-        android:text="Adicionar"
-        android:textColor="@android:color/white" />
 
 </TableLayout>

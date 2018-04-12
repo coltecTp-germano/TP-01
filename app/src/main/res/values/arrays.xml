@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genres">
+        <item>@string/adventure</item>
+        <item>@string/romance</item>
+        <item>@string/terror</item>
+        <item>@string/suspense</item>
+        <item>@string/fiction</item>
+        <item>@string/other</item>
+    </string-array>
+
+    <!-- Age range -->
+    <string-array name="ages">
+        <item>@string/l_age</item>
+        <item>@string/ten_age</item>
+        <item>@string/twelve_age</item>
+        <item>@string/fourteen_age</item>
+        <item>@string/sixteen_age</item>
+        <item>@string/eighteen</item>
+    </string-array>
+</resources>

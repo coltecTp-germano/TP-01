@@ -22,6 +22,9 @@ public interface MovieDao {
     @Update
     int update(Movie movie);
 
+    @Query("DELETE FROM " + TABLE_NAME)
+    int deleteAll();
+
     @Query("DELETE FROM " + TABLE_NAME + " WHERE " +  COLUMN_ID + " = :id")
     int deleteById(long id);
 

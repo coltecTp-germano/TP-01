@@ -48,7 +48,12 @@ public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHol
 
         holder.mDirector.setText(mMovies.get(position).getDirector());
 
-        holder.mReleaseDate.setText(String.valueOf(mMovies.get(position).getReleaseDate()));
+        if (mMovies.get(position).getReleaseDate() == 0) {
+            holder.mReleaseDate.setText(R.string.release_date_undefined);
+        } else{
+            holder.mReleaseDate.setText(String.valueOf(mMovies.get(position).getReleaseDate()));
+        }
+
 
         setGenreTextView(holder, mMovies.get(position).getGenre());
 
@@ -58,7 +63,8 @@ public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHol
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_movie_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_movie_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -94,20 +100,23 @@ public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHol
 
     private void setGenreTextView (ViewHolder holder, int genre) {
         switch (genre) {
-            case MovieEntry.GENRE_AVENTURE:
-                holder.mGenre.setText(R.string.genre_aventure);
+            case MovieEntry.GENRE_ADVENTURE:
+                holder.mGenre.setText(R.string.adventure);
                 break;
             case MovieEntry.GENRE_ROMANCE:
-                holder.mGenre.setText(R.string.genre_romance);
+                holder.mGenre.setText(R.string.romance);
                 break;
             case MovieEntry.GENRE_SUSPENSE:
-                holder.mGenre.setText(R.string.genre_suspense);
+                holder.mGenre.setText(R.string.suspense);
                 break;
             case MovieEntry.GENRE_TERROR:
-                holder.mGenre.setText(R.string.genre_terror);
+                holder.mGenre.setText(R.string.terror);
                 break;
-            case MovieEntry.GENRE_FICCTION:
-                holder.mGenre.setText(R.string.genre_ficction);
+            case MovieEntry.GENRE_FICTION:
+                holder.mGenre.setText(R.string.fiction);
+                break;
+            case MovieEntry.GENRE_OTHER:
+                holder.mGenre.setText(R.string.other);
                 break;
             default:
                 throw new IllegalArgumentException();

@@ -1,32 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Gêneros-->
-    <string name="genre_prompt">Escolha um gênero</string>
-    <string-array name="genres">
-        <item>Aventura</item>
-        <item>Romance</item>
-        <item>Terror</item>
-        <item>Suspense</item>
-        <item>Ficção</item>
-    </string-array>
 
-    <!-- Faixa Etária -->
-    <string name="age_prompt">Escolha uma faixa etária</string>
-    <string-array name="ages">
-        <item>L</item>
-        <item>10</item>
-        <item>12</item>
-        <item>14</item>
-        <item>16</item>
-        <item>18</item>
-    </string-array>
 
     <string name="app_name">Movie Me</string>
-    <string name="genre_aventure">Aventura</string>
-    <string name="genre_romance">Romance</string>
-    <string name="genre_terror">Terror</string>
-    <string name="genre_suspense">Suspense</string>
-    <string name="genre_ficction">Ficção</string>
     <string name="action_insert_dummy_data">Inserir Dados Falsos</string>
     <string name="action_delete_all_entries">Deletar Todos os Filmes</string>
     <string name="empty_view_title_text">Não existe nenhum filme aqui!</string>
@@ -34,4 +10,24 @@
     <string name="delete_swipe">DELETAR</string>
     <string name="snackbar_message1">removido da sua lista de filmes</string>
     <string name="snackbar_message2">DESFAZER</string>
+    <string name="adventure">Aventura</string>
+    <string name="romance">Romance</string>
+    <string name="terror">Terror</string>
+    <string name="suspense">Suspense</string>
+    <string name="fiction">Ficção</string>
+    <string name="name_edit">Nome:</string>
+    <string name="director_edit">Diretor:</string>
+    <string name="genre_edit">Gênero:</string>
+    <string name="age_group_edit">Faixa Etária:</string>
+    <string name="release_year_edit">Ano de Lançamento:</string>
+    <string name="add_btn">Adicionar</string>
+    <string name="other">Outro</string>
+    <string name="action_save">Salvar</string>
+    <string name="unsaved_changes_dialog_msg">Descartar suas altearações e sair da edição?</string>
+    <string name="keep_editing">Continuar Editando</string>
+    <string name="discard">Descartar</string>
+    <string name="release_date_undefined">Indefinido</string>
+    <string name="error_insert">Nenhum filme inserido!</string>
+    <string name="success_insert">Filme inserido</string>
+    <string name="label_register_activity">Adicionar Filme</string>
 </resources>

@@ -1,26 +1,27 @@
 <resources>
     <string name="app_name" translatable="false">Movie Me</string>
 
-    <!--Genres-->
-    <string name="genre_prompt">Choose a genre</string>
-    <string-array name="genres">
-        <item>Aventure</item>
-        <item>Romance</item>
-        <item>Terror</item>
-        <item>Suspense</item>
-        <item>Ficction</item>
-    </string-array>
+    <string name="adventure">Adventure</string>
+    <string name="romance">Romance</string>
+    <string name="terror">Terror</string>
+    <string name="suspense">Suspense</string>
+    <string name="fiction">Fiction</string>
+    <string name="other">Other</string>
 
-    <!-- Age range -->
-    <string name="age_prompt">Choose a age range</string>
-    <string-array name="ages">
-        <item>L</item>
-        <item>10</item>
-        <item>12</item>
-        <item>14</item>
-        <item>16</item>
-        <item>18</item>
-    </string-array>
+    <string name="name_edit">Name:</string>
+    <string name="director_edit">Director:</string>
+    <string name="genre_edit">Genre:</string>
+    <string name="age_group_edit">Age Group:</string>
+    <string name="release_year_edit">Release Year:</string>
+
+    <string name="l_age" translatable="false">L</string>
+    <string name="ten_age" translatable="false">10</string>
+    <string name="twelve_age" translatable="false">12</string>
+    <string name="fourteen_age" translatable="false">14</string>
+    <string name="sixteen_age" translatable="false">16</string>
+    <string name="eighteen" translatable="false">18</string>
+
+    <string name="release_date_undefined">Undefined</string>
 
     <string name="action_insert_dummy_data">Insert Dummy data</string>
     <string name="action_delete_all_entries">Delete All Movies</string>
@@ -33,5 +34,14 @@
     <string name="snackbar_message1">removed from your Movie list!</string>
     <string name="snackbar_message2">UNDO</string>
 
-    <!--TODO(2) Colocar todas strings utilizadas aqui-->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="discard">Discard</string>
+
+    <string name="error_insert">Movie inserted unsuccessfully!</string>
+    <string name="success_insert">Movie inserted successfully!</string>
+
+    <string name="action_save">Save</string>
+
+    <string name="label_register_activity">Add Movie</string>
 </resources>

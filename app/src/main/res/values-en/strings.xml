@@ -1,28 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Genres-->
-    <string name="genre_prompt">Choose a genre</string>
-    <string-array name="genres">
-        <item>Aventure</item>
-        <item>Romance</item>
-        <item>Terror</item>
-        <item>Suspense</item>
-        <item>Ficction</item>
-    </string-array>
 
-    <!-- Age range -->
-    <string name="age_prompt">Choose a age range</string>
-    <string-array name="ages">
-        <item>L</item>
-        <item>10</item>
-        <item>12</item>
-        <item>14</item>
-        <item>16</item>
-        <item>18</item>
-    </string-array>
     <string name="app_name">Movie Me</string>
-    <string name="genre_aventure">Aventure</string>
-    <string name="genre_romance">Romance</string>
+
     <string name="snackbar_message2">UNDO</string>
     <string name="snackbar_message1">removed from your Movie list!</string>
     <string name="delete_swipe">DELETE</string>
@@ -30,7 +10,25 @@
     <string name="empty_view_title_text">There\'s no movie here!</string>
     <string name="action_delete_all_entries">Delete All Movies</string>
     <string name="action_insert_dummy_data">Insert Dummy data</string>
-    <string name="genre_ficction">Ficction</string>
-    <string name="genre_suspense">Suspense</string>
-    <string name="genre_terror">Terror</string>
+    <string name="adventure">Adventure</string>
+    <string name="romance">Romance</string>
+    <string name="terror">Terror</string>
+    <string name="suspense">Suspense</string>
+    <string name="fiction">Fiction</string>
+    <string name="name_edit">Name:</string>
+    <string name="director_edit">Director:</string>
+    <string name="genre_edit">Genre:</string>
+    <string name="age_group_edit">Age Group:</string>
+    <string name="release_year_edit">Release Year:</string>
+    <string name="add_btn">Add</string>
+    <string name="other">Other</string>
+    <string name="action_save">Save</string>
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="discard">Discard</string>
+    <string name="release_date_undefined">Undefined</string>
+    <string name="error_insert">Movie inserted unsuccessfully!</string>
+    <string name="success_insert">Movie inserted successfully!</string>
+    <string name="label_register_activity">Add Movie</string>
+
 </resources>

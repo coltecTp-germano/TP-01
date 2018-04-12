@@ -1,9 +1,12 @@
 package coltectp.github.io.movieme;
 
 import android.content.ContentUris;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +15,8 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.database.Cursor;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -24,6 +29,7 @@ import android.content.ContentValues;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ShareActionProvider;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import coltectp.github.io.movieme.data.Movie;
@@ -57,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setEmptyView(emptyView);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mMovies = new ArrayList<>();
 
@@ -78,6 +83,20 @@ public class MainActivity extends AppCompatActivity
                 new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
 
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
+
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerTouchListener(this, mRecyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        })
+        );
 
         // Inicia o assincronismo
         getSupportLoaderManager().initLoader(LOADER_MOVIE,null, this);
@@ -195,15 +214,34 @@ public class MainActivity extends AppCompatActivity
                 insertDummyData();
                 return true;
             case R.id.action_delete_all_entries:
+                deleteAllPets();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void setShareIntent(Intent shareIntent) {
-        if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(shareIntent);
-        }
+    private void deleteAllPets() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+
+        alertBuilder.setTitle("Aviso!");
+        alertBuilder.setMessage("Irá deletar rodos os filmes já cadastrados.");
+
+        alertBuilder.setPositiveButton("Estou ciente!", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                getContentResolver().delete(MovieContract.MovieEntry.CONTENT_URI, null,  null);
+            }
+        });
+
+        alertBuilder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getBaseContext(), "Ufa!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        AlertDialog dialog = alertBuilder.create();
+        dialog.show();
     }
 
     private void insertDummyData (){
@@ -230,4 +268,49 @@ public class MainActivity extends AppCompatActivity
             Uri newUri = getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, values);
         }
     }
+
+    public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+        private ClickListener clicklistener;
+        private GestureDetector gestureDetector;
+
+        public RecyclerTouchListener(Context context, final RecyclerView recycleView, final ClickListener clicklistener){
+
+            this.clicklistener=clicklistener;
+            gestureDetector=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    View child=recycleView.findChildViewUnder(e.getX(),e.getY());
+                    if(child!=null && clicklistener!=null){
+                        clicklistener.onLongClick(child,recycleView.getChildAdapterPosition(child));
+                    }
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            View child=rv.findChildViewUnder(e.getX(),e.getY());
+            if(child!=null && clicklistener!=null && gestureDetector.onTouchEvent(e)){
+                clicklistener.onClick(child,rv.getChildAdapterPosition(child));
+            }
+
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
+
 }

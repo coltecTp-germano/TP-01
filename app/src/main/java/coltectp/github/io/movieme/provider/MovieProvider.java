@@ -9,6 +9,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import android.content.UriMatcher;
 
@@ -110,12 +111,16 @@ public class MovieProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
         final int code = sUriMatcher.match(uri);
-
+        final Context context = getContext();
         switch (code) {
             case MOVIE:
-                throw new IllegalArgumentException("Cannot delete with " + uri + " with match " + code);
+                final int rowsDeleted = Database.getInstance(context).movieDao()
+                        .deleteAll();
+                if (rowsDeleted != 0) {
+                    Objects.requireNonNull(getContext()).getContentResolver().notifyChange(uri, null);
+                }
+                return rowsDeleted;
             case MOVIE_ID:
-                final Context context = getContext();
                 if (context == null) {
                     return 0;
                 }

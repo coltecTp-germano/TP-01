@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label="Add filme"
+            android:label="@string/label_register_activity"
             android:parentActivityName=".MainActivity" >
 
             <meta-data
