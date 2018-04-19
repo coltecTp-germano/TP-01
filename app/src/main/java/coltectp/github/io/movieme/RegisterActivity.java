@@ -40,8 +40,6 @@ public class RegisterActivity extends AppCompatActivity {
     private int mGenre = MovieContract.MovieEntry.GENRE_OTHER;
     private boolean mMovieHasChanged = false;
 
-    private int[] imagesSpinner;
-
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -70,8 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void setupAgeSpinner () {
 
-        imagesSpinner = new int[]{
-            R.drawable.icon_free,
+        int[] imagesSpinner = new int[]{
+                R.drawable.icon_free,
                 R.drawable.icon_ten,
                 R.drawable.icon_twelve,
                 R.drawable.icon_fourteen,

@@ -83,12 +83,15 @@ public class MainActivity extends AppCompatActivity
                 new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
 
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
-
         mRecyclerView.addOnItemTouchListener(
                 new RecyclerTouchListener(this, mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
+                Intent intent = new Intent(MainActivity.this, MovieActivity.class);
+                int id = (int) mRecyclerView.getAdapter().getItemId(position);
+                Uri currentMovie = ContentUris.withAppendedId(MovieContract.MovieEntry.CONTENT_URI, id);
+                intent.setData(currentMovie);
+                startActivity(intent);
             }
 
             @Override
@@ -273,7 +276,7 @@ public class MainActivity extends AppCompatActivity
         private ClickListener clicklistener;
         private GestureDetector gestureDetector;
 
-        public RecyclerTouchListener(Context context, final RecyclerView recycleView, final ClickListener clicklistener){
+        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clicklistener){
 
             this.clicklistener=clicklistener;
             gestureDetector=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
@@ -284,9 +287,9 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void onLongPress(MotionEvent e) {
-                    View child=recycleView.findChildViewUnder(e.getX(),e.getY());
+                    View child=recyclerView.findChildViewUnder(e.getX(),e.getY());
                     if(child!=null && clicklistener!=null){
-                        clicklistener.onLongClick(child,recycleView.getChildAdapterPosition(child));
+                        clicklistener.onLongClick(child,recyclerView.getChildAdapterPosition(child));
                     }
                 }
             });
