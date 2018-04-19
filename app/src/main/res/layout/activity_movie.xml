@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_column="2"
-    android:layout_margin="16dp"
-    android:orientation="vertical"
-    tools:context="coltectp.github.io.movieme.RegisterActivity">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    tools:context=".MovieActivity">
 
-    <!-- Primeira linha - Nome do filme -->
     <TableRow
         android:id="@+id/row1"
         android:layout_marginTop="20dp">
@@ -21,7 +19,7 @@
             android:layout_height="wrap_content"
             android:text="@string/name_edit" />
 
-        <EditText
+        <TextView
             android:id="@+id/nome"
             android:layout_width="128dp"
             android:layout_height="wrap_content" />
@@ -40,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="@string/director_edit" />
 
-        <EditText
+        <TextView
             android:id="@+id/diretor"
             android:layout_width="201dp"
             android:layout_height="wrap_content" />
@@ -60,13 +58,12 @@
             android:layout_height="wrap_content"
             android:text="@string/genre_edit" />
 
-        <Spinner
+        <TextView
             android:id="@+id/generos"
+            android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_marginTop="20dp"
-            android:longClickable="false"
-            android:padding="20dp"
-            android:spinnerMode="dropdown" />
+            android:padding="20dp"/>
 
     </TableRow>
 
@@ -83,9 +80,9 @@
             android:layout_height="wrap_content"
             android:text="@string/age_group_edit" />
 
-        <Spinner
+        <ImageView
             android:id="@+id/idades"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:layout_marginTop="20dp"
             android:padding="20dp" />
@@ -103,10 +100,11 @@
             android:layout_height="wrap_content"
             android:text="@string/release_year_edit" />
 
-        <EditText
+        <TextView
             android:id="@+id/ano_lancamento"
             android:inputType="date" />
 
     </TableRow>
+
 
 </TableLayout>
