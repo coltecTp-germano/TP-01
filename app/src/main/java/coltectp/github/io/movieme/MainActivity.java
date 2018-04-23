@@ -15,6 +15,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor>,
         RecyclerItemTouchHelper.RecyclerItemTouchHelperListener{
 
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final int LOADER_MOVIE = 0;
 
     private MovieAdapter mMovieAdapter;
@@ -83,23 +85,20 @@ public class MainActivity extends AppCompatActivity
                 new RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT, this);
 
         new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(mRecyclerView);
-        mRecyclerView.addOnItemTouchListener(
-                new RecyclerTouchListener(this, mRecyclerView, new ClickListener() {
+        mMovieAdapter.setOnItemClickListener(new MovieAdapter.ClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onItemClick(int position, View v) {
                 Intent intent = new Intent(MainActivity.this, MovieActivity.class);
-                int id = (int) mRecyclerView.getAdapter().getItemId(position);
+                int itemPosition = mRecyclerView.getChildLayoutPosition(v);
+                Movie item = mMovies.get(itemPosition);
+                long id = item.getId();
+
                 Uri currentMovie = ContentUris.withAppendedId(MovieContract.MovieEntry.CONTENT_URI, id);
+                Log.d(LOG_TAG, String.valueOf(currentMovie));
                 intent.setData(currentMovie);
                 startActivity(intent);
             }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        })
-        );
+        });
 
         // Inicia o assincronismo
         getSupportLoaderManager().initLoader(LOADER_MOVIE,null, this);
@@ -271,49 +270,4 @@ public class MainActivity extends AppCompatActivity
             Uri newUri = getContentResolver().insert(MovieContract.MovieEntry.CONTENT_URI, values);
         }
     }
-
-    public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
-        private ClickListener clicklistener;
-        private GestureDetector gestureDetector;
-
-        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clicklistener){
-
-            this.clicklistener=clicklistener;
-            gestureDetector=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
-                @Override
-                public boolean onSingleTapUp(MotionEvent e) {
-                    return true;
-                }
-
-                @Override
-                public void onLongPress(MotionEvent e) {
-                    View child=recyclerView.findChildViewUnder(e.getX(),e.getY());
-                    if(child!=null && clicklistener!=null){
-                        clicklistener.onLongClick(child,recyclerView.getChildAdapterPosition(child));
-                    }
-                }
-            });
-        }
-
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            View child=rv.findChildViewUnder(e.getX(),e.getY());
-            if(child!=null && clicklistener!=null && gestureDetector.onTouchEvent(e)){
-                clicklistener.onClick(child,rv.getChildAdapterPosition(child));
-            }
-
-            return false;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-        }
-    }
-
 }

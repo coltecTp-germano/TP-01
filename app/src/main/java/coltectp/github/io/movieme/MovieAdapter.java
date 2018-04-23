@@ -1,6 +1,7 @@
 package coltectp.github.io.movieme;
 
 import android.arch.persistence.room.Relation;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ import static coltectp.github.io.movieme.provider.MovieContract.*;
  */
 
 public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHolder> {
-
+    private static ClickListener clickListener;
     private Context mContext;
     private ArrayList<Movie> mMovies;
 
@@ -150,7 +151,7 @@ public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHol
         notifyItemInserted(position);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
        @BindView(R.id.lm_name_tv) TextView mNameMovie;
        @BindView(R.id.lm_release_date_tv) TextView mReleaseDate;
        @BindView(R.id.lm_genre_tv) TextView mGenre;
@@ -161,7 +162,21 @@ public class MovieAdapter extends EmptyRecyclerView.Adapter<MovieAdapter.ViewHol
 
         ViewHolder (View view) {
             super(view);
+            itemView.setOnClickListener(this);
             bind(this, view);
         }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onItemClick(getAdapterPosition(), v);
+        }
+    }
+
+    public interface ClickListener {
+        void onItemClick(int position, View v);
+    }
+
+    public void setOnItemClickListener(ClickListener clickListener) {
+        MovieAdapter.clickListener = clickListener;
     }
 }

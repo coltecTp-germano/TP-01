@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
         mSpinnerAges.setOnTouchListener(mTouchListener);
         mSpinnerGenre.setOnTouchListener(mTouchListener);
 
-        //TODO(4) Inicializar os spinners (olhar o PetsApp)
         setupAgeSpinner();
         setupGenreSpinner();
     }
@@ -80,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
         AgeSpinnerAdapter mCustomAdapter =
                 new AgeSpinnerAdapter(this, imagesSpinner);
         mSpinnerAges.setAdapter(mCustomAdapter);
+
 
         mSpinnerAges.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .createFromResource(this,
                 R.array.genres, android.R.layout.simple_spinner_item);
 
-        genreSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genreSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
         mSpinnerGenre.setAdapter(genreSpinnerAdapter);
 
@@ -208,12 +208,12 @@ public class RegisterActivity extends AppCompatActivity {
         int age = mAge;
         int genre = mGenre;
 
-        if (TextUtils.isEmpty(name)
-                && TextUtils.isEmpty(diretor)
-                && age == MovieContract.MovieEntry.AGE_GROUP_L
-                && genre == MovieContract.MovieEntry.GENRE_OTHER) {
-            return;
+        if (mEditTextDiretor.getText().toString() == null ||
+                mEditTextNome.getText().toString() == null ||
+                mEditTextReleaseDate.getText().toString() == null) {
+
         }
+
 
         ContentValues values = new ContentValues();
         values.put(MovieContract.MovieEntry.COLUMN_NAME, name);

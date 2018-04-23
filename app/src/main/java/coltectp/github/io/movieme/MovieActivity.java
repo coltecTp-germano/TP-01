@@ -47,12 +47,9 @@ public class MovieActivity extends AppCompatActivity
         Intent intent = getIntent();
         mMovieDetailsUri = intent.getData();
 
-        if (mMovieDetailsUri == null) {
-        } else {
-
+        if (mMovieDetailsUri != null) {
+            getSupportLoaderManager().initLoader(LOADER_ID,null, this);
         }
-        getSupportLoaderManager().initLoader(LOADER_ID,null, this);
-
     }
 
     @Override
@@ -93,7 +90,8 @@ public class MovieActivity extends AppCompatActivity
                         MovieContract.MovieEntry.COLUMN_GENRE
                 };
 
-                return new CursorLoader(this, MovieContract.MovieEntry.CONTENT_URI,
+
+                return new CursorLoader(this, mMovieDetailsUri,
                         projection,
                         null,
                         null,
